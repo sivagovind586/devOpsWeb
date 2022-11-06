@@ -1,17 +1,16 @@
 pipeline {
-    agent any
+    angent any
     
     tools {
-        maven 'local_maven'
+        maven 'localMaven'
     }
-    parameters {
-         string(name: 'staging_server', defaultValue: '13.232.37.20', description: 'Remote Staging Server')
+    triggers {
+        pollSCM{'* * * * *'}
     }
-
-stages{
-        stage('Build'){
+    satges{
+        stage{'Build'}{
             steps {
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
             post {
                 success {
@@ -19,16 +18,23 @@ stages{
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
             }
-        }
-
-        stage ('Deployments'){
-            parallel{
-                stage ("Deploy to Staging"){
+        stage {'Deploy'} {
+            parallel {
+                stage {'Deploy the staging'} {
+                  steps {
+                    bat 'the is deploy stage'
+                  }
+                }
+                stage {'Deploy to production'} {
                     steps {
-                        sh "scp -v -o StrictHostKeyChecking=no **/*.war root@${params.staging_server}:/opt/tomcat/webapps/"
+                        bat 'the is deploy to prod'
                     }
                 }
             }
         }
-    }
-}
+        }
+               
+            
+                
+                
+        
