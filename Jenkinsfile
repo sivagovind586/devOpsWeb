@@ -2,13 +2,13 @@ pipeline {
     agent any
     
     tools {
-        maven 'localMaven'
+        maven 'local_maven'
     }
     triggers {
         pollSCM('* * * * *')
     }
     stages{
-        stage{'Build'}{
+        stage {'Build'}{
             steps {
                 bat 'mvn clean package'
             }
