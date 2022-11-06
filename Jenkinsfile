@@ -18,6 +18,7 @@ pipeline {
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
             }
+        }   
         stage {'Deploy'} {
             parallel {
                 stage {'Deploy the staging'} {
@@ -32,6 +33,9 @@ pipeline {
                 }
             }
         }
+    }
+}  
+    
         }
                
             
