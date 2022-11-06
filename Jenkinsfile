@@ -23,7 +23,7 @@ pipeline {
             parallel {
                 stage ('Deploy the staging') {
                   steps {
-                    bat 'the is deploy stage'
+                    deploy adapters: [tomcat9(credentialsId: '9b11b714-2672-450b-82f7-3faf36d83932', path: '', url: 'http://localhost:8082/')], contextPath: null, war: '**/*.war'
                   }
                 }
                 stage ('Deploy to production') {
