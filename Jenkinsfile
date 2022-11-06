@@ -1,13 +1,13 @@
 pipeline {
-    angent any
+    agent any
     
     tools {
         maven 'localMaven'
     }
     triggers {
-        pollSCM{'* * * * *'}
+        pollSCM('* * * * *')
     }
-    satges{
+    stages{
         stage{'Build'}{
             steps {
                 bat 'mvn clean package'
