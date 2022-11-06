@@ -8,7 +8,7 @@ pipeline {
         pollSCM('* * * * *')
     }
     stages{
-        stage {'Build'}{
+        stage ('Build'){
             steps {
                 bat 'mvn clean package'
             }
@@ -19,14 +19,14 @@ pipeline {
                 }
             }
         }   
-        stage {'Deploy'} {
+        stage ('Deploy') {
             parallel {
-                stage {'Deploy the staging'} {
+                stage ('Deploy the staging') {
                   steps {
                     bat 'the is deploy stage'
                   }
                 }
-                stage {'Deploy to production'} {
+                stage ('Deploy to production') {
                     steps {
                         bat 'the is deploy to prod'
                     }
